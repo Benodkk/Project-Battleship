@@ -1,9 +1,27 @@
 import ship from '../factories/ship.js'
 
-test ('ship 2 has to have 2 length', () => {
-    expect(ship(2,0).length).toBe(2);
+let ship4 = ship(4,[65,66,67,68])
+
+test ('long value returned' , () => {
+    expect(ship4.long).toEqual(4)
 })
 
-test ('ship with 2 length and 2 hit has to be sunk', () => {
-    expect(ship(2,2).theShipSunk).toMatch(/The ship has been sunk/)
+
+test ('testing shipHit function', () => {
+    ship4.shipHit(67)
+    expect(ship4.oneShip[2]).toBe(true)
+    expect(ship4.oneShip[3]).toBe(false)
+})
+
+test('testing isSunk function for false', () => {
+    ship4.shipHit(65)
+    expect(ship4.isSunk()).toBe(false)
+})
+
+test('testing isSunk function for true', () => {
+    ship4.shipHit(65)
+    ship4.shipHit(66)
+    ship4.shipHit(67)
+    ship4.shipHit(68)
+    expect(ship4.isSunk()).toBe(true)
 })

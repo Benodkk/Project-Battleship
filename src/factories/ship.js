@@ -1,31 +1,17 @@
-let ship = (length, hit) => {
+const ship = (long,fields) => {
 
-    function hit(){
-        ship.hit += 1
-        // dodac ze pozycja na ktorej stoi statek zostala trafiona 
-    }   
+    const oneShip = new Array(long).fill(false)
 
-    let theShipSunk
+    function shipHit(field){
+        let boom = fields.indexOf(field)
+        oneShip[boom] = true
+    }
 
     function isSunk(){
-        
-        if (ship.lenght==ship.hit){
-            theShipSunk='The ship has been sunk'
-        }
-        else {
-            theShipSunk='The ship is still alive'
-        }
+        return oneShip.every(x => x === true)
     }
-    isSunk()
-
-   return { length, hit, theShipSunk} 
+    
+   return {long, fields, oneShip, shipHit, isSunk} 
 }
-
-let ship1 = ship (1,0)
-let ship2 = ship (2,0)
-let ship3 = ship (3,0)
-let ship4 = ship (4,0)
-
-
 
 export default ship
