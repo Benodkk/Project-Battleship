@@ -1,4 +1,4 @@
-const ship = (long,fields) => {
+const ship = (id, long,fields) => {
 
     const oneShip = new Array(long).fill(false)
 
@@ -11,7 +11,7 @@ const ship = (long,fields) => {
         return oneShip.every(x => x === true)
     }
     
-   return {long, fields, oneShip, shipHit, isSunk} 
+   return {id, long, fields, oneShip, shipHit, isSunk} 
 }
 
 export default ship

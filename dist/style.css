@@ -1,3 +1,8 @@
+body {
+    display: flex;
+    gap:20px;
+}
+
 .playerBoard, .computerBoard {
     display: grid;
     grid-template-columns:  repeat(10, 50px);
@@ -5,4 +10,10 @@
 }
 .pixel {
     border: 1px solid black
+}
+.missed{
+    background-color: rgb(0, 0, 255);
+}
+.hit{
+    background-color: rgb(248, 89, 89);
 }
