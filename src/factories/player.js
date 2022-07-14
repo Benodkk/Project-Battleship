@@ -11,13 +11,13 @@ const player = () => {
 
     function computerChoice(){
         let attack
-
+        
         if (myTurn == false){
             attack = Math.floor(100*Math.random())
             if (computerMoves.some(x => x == attack)==true){
                 computerChoice()
             }
-            else { computerMoves.push(attack)
+            else {computerMoves.push(attack)
                 myTurn = true}
         }
         return attack
