@@ -1,4 +1,4 @@
-import player from "../factories/player.js"
+import {myTurn, player} from "../factories/player.js"
 import gameboard from "../factories/gameboard.js"
 import ship from "../factories/ship.js"
 
@@ -11,33 +11,52 @@ myShips.push(janusz1)
 let janusz2 = ship(2,3,[21,22,23])
 myShips.push(janusz2)
 
-
-let comp = player()
-let compBoard = gameboard()
-
-
 januszBoard.placeShips(janusz1.fields)
 januszBoard.placeShips(janusz2.fields)
 
-function ifShipSunk(){
+
+
+let compBoard = gameboard()
+let compShips=[]
+let comp1 = ship(1,4,[11,12,13,14])
+compShips.push(comp1)
+
+compBoard.placeShips(comp1.fields)
+
+
+
+
+function ifShipJanuszSunk(){
+    console.log(januszBoard.board)   
     for (let i=0; i<januszBoard.myShips.length; i++){
         if(myShips[i].id==januszBoard.myShips[i]){
 
         }
-
         if(myShips[i].isSunk()==true){
-            console.log('koniec statku')
+            console.log(`The ship has been sunk`)
+        }
+    }
+}
+
+function ifShipCompSunk(){ 
+    for (let i=0; i<compBoard.myShips.length; i++){
+        if(compShips[i].id==compBoard.myShips[i]){
+
+        }
+        if(compShips[i].isSunk()==true){
+            console.log(`The ship has been sunk`)
         }
     }
 }
 
 function ifGameFinish(){
-    console.log(januszBoard.board)
-    console.log(myShips[0].oneShip)
-    console.log(myShips[1].oneShip)
+
     if(januszBoard.AllShipsSunk()==true){
-        console.log('koniec')
+        console.log('koniec komp wygral')
+    }
+    else if(compBoard.AllShipsSunk()==true){
+        console.log('koniec janusz wygral')
     }
 }
 
-export {januszBoard, compBoard, myShips, ifShipSunk, ifGameFinish}
+export {myTurn, janusz, januszBoard, compBoard, myShips, compShips, ifShipJanuszSunk, ifShipCompSunk, ifGameFinish}

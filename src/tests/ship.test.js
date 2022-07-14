@@ -1,6 +1,6 @@
 import ship from '../factories/ship.js'
 
-let ship4 = ship(4,[65,66,67,68])
+let ship4 = ship(1,4,[65,66,67,68])
 
 test ('long value returned' , () => {
     expect(ship4.long).toEqual(4)

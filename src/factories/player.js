@@ -1,16 +1,10 @@
 import gameboard from './gameboard.js'
 
+let myTurn = true
 const player = () => {
-    let myTurn = true
-
-    function playerChoice(attackedField){
-        let attack
-
-        if (myTurn == true){
-            attack = attackedField
-            myTurn = false
-        }
-        return attack
+    
+    function playerChoice(){
+        myTurn = false
     }
 
     let computerMoves = []
@@ -32,4 +26,4 @@ const player = () => {
     return {playerChoice, computerChoice, computerMoves}
 }
 
-export default player
+export  {myTurn,player}

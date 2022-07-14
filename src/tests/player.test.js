@@ -1,4 +1,4 @@
-import player from '../factories/player.js'
+import {myTurn, player} from '../factories/player.js'
 
 const janusz = player()
 
@@ -7,7 +7,8 @@ test ('computerChoice gives undefined before playerChoice', () => {
 })
 
 test ('testing playerChoice function', () => {
-    expect(janusz.playerChoice(5)).toBe(5)
+    janusz.playerChoice()
+    expect(myTurn).toBe(false)
 })
 
 test ('computerChoice gives number after playerChoice', () => {
