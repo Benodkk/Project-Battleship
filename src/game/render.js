@@ -1,6 +1,7 @@
 import player from "../factories/player.js";
 import {myTurn, janusz, januszBoard, myShips , compBoard, compShips, ifGameFinish, ifShipJanuszSunk, ifShipCompSunk} from "./game.js"
 import ship from "../factories/ship.js"
+import generateCompShips from "./compShipsGenarated"
 
 let playerBoard = document.querySelector('.playerBoard');
 let computerBoard = document.querySelector('.computerBoard')
@@ -17,7 +18,7 @@ function createComputerBoard() {
         pixel.classList.add('pixel');
         if (myTurn==true){
             pixel.addEventListener('click', () => {
-                if (myTurn==true && fourFieldsToPlace==0 && threeFieldsToPlace==0 && twoFieldsToPlace==0 && oneFieldsToPlace==0 ){
+                if (myTurn==true && fourFieldsToPlace==0 && threeFieldsToPlace==0 && twoFieldsToPlace==0 && oneFieldToPlace==0 ){
                     let attackedFieldId=compBoard.board[i]
                     compBoard.receiveAttack(i)
                     if (compBoard.board[i]=='missed'){
@@ -40,7 +41,8 @@ function createComputerBoard() {
             }) 
         } 
 
-    }  
+    }
+    generateCompShips()  
 }
 
 let thereIsShip =[]
@@ -66,8 +68,6 @@ function createPlayerBoard() {
             }
         }     
         pixel.addEventListener('click', () => {
-            console.log(shipAdd)
-            console.log(chosenFields)
             // placing 1-field ships
             if(shipAdd==1){
                 if(chosenFields.length==0){
@@ -120,7 +120,6 @@ function createPlayerBoard() {
                     }
                 }
                 if(chosenFields.length==2){
-                    console.log('dupa')
                     // placing ships vertical
                     if(chosenFields[0]-chosenFields[1] == 10 && i==chosenFields[1]-10){
                         chosenFields.push(i)
@@ -187,7 +186,6 @@ function createPlayerBoard() {
                     }
                 }
                 if(chosenFields.length==2){
-                    console.log('dupa')
                     // placing ships vertical
                     if(chosenFields[0]-chosenFields[1] == 10 && i==chosenFields[1]-10){
                         chosenFields.push(i)

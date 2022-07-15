@@ -1,1 +1,0 @@
-import {compBoard, compShips} from './game.js'
