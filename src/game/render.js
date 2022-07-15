@@ -15,7 +15,8 @@ function createComputerBoard() {
     for (let i=0; i<=99; i++){
         let pixel = document.createElement('div')
         computerBoard.appendChild(pixel);
-        pixel.classList.add('pixel');
+        pixel.classList.add('pixelC');
+        pixel.setAttribute("idd",i)
         if (myTurn==true){
             pixel.addEventListener('click', () => {
                 if (myTurn==true && fourFieldsToPlace==0 && threeFieldsToPlace==0 && twoFieldsToPlace==0 && oneFieldToPlace==0 ){
@@ -29,6 +30,13 @@ function createComputerBoard() {
                         for (let j=0; j<compShips.length; j++){
                             if(attackedFieldId==compShips[j].id){
                                 compShips[j].shipHit(i)
+                                if(compShips[j].isSunk()==true){
+                                    for(let k=0; k<=compShips[j].long; k++){
+                                        let sunkPixel = document.querySelector(`[idd="${compShips[j].fields[k]}"`)
+                                        console.log(sunkPixel)
+                                        console.log(compShips[j].long)
+                                    }
+                                }
                             }
                         }
                     }
@@ -40,9 +48,10 @@ function createComputerBoard() {
                 }
             }) 
         } 
-
     }
     generateCompShips()  
+
+
 }
 
 let thereIsShip =[]
@@ -55,6 +64,7 @@ let twoFieldsToPlace=3
 let oneFieldToPlace=4
 
 function createPlayerBoard() {
+    let attackedFieldId=januszBoard.board[janusz.computerMoves[janusz.computerMoves.length-1]]
     januszBoard.receiveAttack(janusz.computerMoves[janusz.computerMoves.length-1])
     playerBoard.textContent=''
 
@@ -322,7 +332,6 @@ function createPlayerBoard() {
                 }
             }
         })
-        let attackedFieldId=januszBoard.board[i]
         if (januszBoard.board[i]=='missed'){
             pixel.classList.add('missed')
         }
@@ -332,8 +341,17 @@ function createPlayerBoard() {
             for (let j=0; j<myShips.length; j++){
                 if(attackedFieldId==myShips[j].id){
                     myShips[j].shipHit(i)
+                    if(myShips[j].isSunk()==true){
+                        for(let k=0; k<=myShips[j].long; k++){
+                            januszBoard.board[myShips[j].fields[k]]="sunk"
+                        }
+                    }
                 }
             }
+        }
+        if (januszBoard.board[i]=='sunk'){
+            pixel.classList.remove('ship')
+            pixel.classList.add('sunk')
         }
     }
     ifShipJanuszSunk()

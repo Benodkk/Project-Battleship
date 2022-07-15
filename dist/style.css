@@ -11,6 +11,9 @@ body {
 .pixel {
     border: 1px solid black
 }
+.pixelC {
+    border: 1px solid black
+}
 .missed{
     background-color: rgb(0, 0, 255);
 }

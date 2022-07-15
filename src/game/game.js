@@ -13,12 +13,13 @@ let compBoard = gameboard()
 let compShips=[]
 
 function ifShipJanuszSunk(){
-    for (let i=0; i<januszBoard.myShips.length; i++){
-        if(myShips[i].id==januszBoard.myShips[i]){
-
-        }
+    for (let i=0; i<myShips.length; i++){
+        
         if(myShips[i].isSunk()==true){
-            console.log(`The ship has been sunk`)
+            console.log(`Janusz ship has been sunk`)
+            for (let j=0; j<myShips[i].length; j++){
+                console.log('okej')
+            }
         }
     }
 }
