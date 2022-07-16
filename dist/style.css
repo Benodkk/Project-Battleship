@@ -1,17 +1,199 @@
 body {
     display: flex;
     gap:20px;
+    
 }
+.gridContainer{
+    display: grid;
+    grid-template-columns: 500px 200px 500px;
+    grid-template-rows: 500px 80px 200px 
+}
+
+.gridContainer:after{
+    content: "";
+    background: linear-gradient(
+        45deg,
+        #ff0000,
+        #ff7300,
+        #fffb00,
+        #48ff00,
+        #00ffd5,
+        #002bff,
+        #7a00ff,
+        #ff00c8,
+        #ff0000
+    );
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 100%;
+    z-index: -1;
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing-button-85 20s linear infinite;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 10px;
+}
+@keyframes glowing-button-85 {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
 
 .playerBoard, .computerBoard {
     display: grid;
     grid-template-columns:  repeat(10, 50px);
     grid-template-rows:  repeat(10, 50px);
 }
-.pixel {
-    border: 1px solid black
+
+
+
+
+
+
+
+.vs, .yourGrid, .compGrid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
 }
-.pixelC {
+
+
+/* BUTTONS */
+.buttons{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap:20px
+}
+.addPoleBtn{
+    display: flex;
+    flex-direction: column;
+    gap:20px
+}
+.btnTop, .btnBot{
+    display: flex;
+    padding: 0 30px;
+    justify-content: space-between;
+}
+.resetBtn{
+    align-self: center;
+}
+
+.addPoleBtn button {
+    width: 155px;
+    padding: 0.6em 2em;
+    border: none;
+    outline: none;
+    color: rgb(255, 255, 255);
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+.resetBtn{
+    width: 120px;
+    padding: 0.6em 2em;
+    border: none;
+    outline: none;
+    color: rgb(255, 255, 255);
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation; 
+}
+.addPoleBtn button:before, .resetBtn:before {
+    content: "";
+    background: linear-gradient(
+        45deg,
+        #ff0000,
+        #ff7300,
+        #fffb00,
+        #48ff00,
+        #00ffd5,
+        #002bff,
+        #7a00ff,
+        #ff00c8,
+        #ff0000
+    );
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing-button-85 20s linear infinite;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 10px;
+}
+
+@keyframes glowing-button-85 {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.addPoleBtn button:after, .resetBtn:after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #222;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+.addPoleBtn button:hover, .resetBtn:hover {
+    box-shadow: 0 0 .25rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+.addPoleBtn button:active, .resetBtn:active {
+    color: #cb9bff
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.pixel, .pixelC  {
     border: 1px solid black
 }
 .missed{
@@ -23,7 +205,7 @@ body {
 .sunk{
     background-color: black;
 }
-.pixel:hover{
+.pixel:hover, .pixelC:hover{
     background-color: rgb(230, 230, 230);
 }
 .ship{
