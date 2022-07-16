@@ -1,5 +1,4 @@
-import player from "../factories/player.js";
-import {myTurn, janusz, januszBoard, myShips , compBoard, compShips, ifGameFinish, ifShipJanuszSunk, ifShipCompSunk} from "./game.js"
+import {myTurn, janusz, januszBoard, myShips , compBoard, compShips, ifGameFinish} from "./game.js"
 import ship from "../factories/ship.js"
 import generateCompShips from "./compShipsGenarated"
 
@@ -31,16 +30,15 @@ function createComputerBoard() {
                             if(attackedFieldId==compShips[j].id){
                                 compShips[j].shipHit(i)
                                 if(compShips[j].isSunk()==true){
-                                    for(let k=0; k<=compShips[j].long; k++){
+                                    for(let k=0; k<=compShips[j].long-1; k++){
                                         let sunkPixel = document.querySelector(`[idd="${compShips[j].fields[k]}"`)
-                                        console.log(sunkPixel)
-                                        console.log(compShips[j].long)
+                                        sunkPixel.classList.remove('hit')
+                                        sunkPixel.classList.add('sunk')
                                     }
                                 }
                             }
                         }
                     }
-                    ifShipCompSunk()
                     ifGameFinish()    
                     janusz.playerChoice()
                     janusz.computerChoice()
@@ -354,7 +352,6 @@ function createPlayerBoard() {
             pixel.classList.add('sunk')
         }
     }
-    ifShipJanuszSunk()
     ifGameFinish()    
 }
 
@@ -378,7 +375,7 @@ add4pole.addEventListener('click', () => {
         shipAdd=4
     }
 })
-    
+
 
 
 export  {createPlayerBoard, createComputerBoard}
